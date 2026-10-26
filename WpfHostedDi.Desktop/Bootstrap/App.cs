@@ -26,7 +26,7 @@ public class App : Application
     {
         base.OnStartup(e);
 
-        var themeService = _serviceProvider.GetRequiredService<IThemeService>();
+        var themeService = _serviceProvider.GetRequiredService<ThemeService>();
         themeService.ApplyTheme(themeService.CurrentTheme);
         MainWindow = _serviceProvider.GetRequiredService<MainWindow>();
         MainWindow.Show();

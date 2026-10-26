@@ -4,8 +4,8 @@
 
 ## Структура
 
-- `WpfHostedDi.Services` — сервисы и контракты без зависимости от WPF.
-- `WpfHostedDi.Desktop` — точка входа, DI, окна, ViewModel и реализация применения WPF-ресурсов.
+- `WpfHostedDi.Services` — сервисы приложения; ThemeService и его WPF-палитры.
+- `WpfHostedDi.Desktop` — точка входа, DI, окна, ViewModel и общие стили.
 - `WpfHostedDi.Tests` — проект xUnit для интеграционного тестирования
 
 `Program` запускает хост, выполняет WPF message loop и останавливает хост при выходе.
@@ -15,18 +15,26 @@
 
 ## Управление темами
 
-Внедри `IThemeService` через конструктор и вызови в UI-потоке:
+Внедри `ThemeService` через конструктор и вызови в UI-потоке:
 
 ```csharp
 themeService.ApplyTheme(AppTheme.Light);
 ```
 
-`CurrentTheme` возвращает выбранную тему, `ThemeChanged` уведомляет об изменении
-после успешного применения ресурсов. Повторный выбор той же темы ничего не делает.
+`CurrentTheme` возвращает выбранную тему. Каждый вызов `ApplyTheme` загружает её палитру.
 При запуске применяется тёмная тема. Выбор хранится в памяти до закрытия приложения.
 
-`WpfThemeApplier` заменяет только собственный словарь палитры, сохраняя общие стили.
+`ThemeService` заменяет только собственный словарь палитры, сохраняя общие стили.
 Используй `DynamicResource` для цветов и кистей, которые должны меняться сразу.
 Для окон явно подключай общий стиль: `Style="{StaticResource {x:Type Window}}"`.
 Чтобы добавить тему, расширь `AppTheme`, добавь словарь с теми же ключами в
-`Resources/Themes` и сопоставление файла в `WpfThemeApplier`.
+`WpfHostedDi.Services/Resources/Themes` с именем `{ИмяТемы}Colors.xaml`.
+
+## ViewModel
+
+Все ViewModel используют `CommunityToolkit.Mvvm`: наследуются от `ObservableObject`
+и объявляются как `partial`, чтобы поддерживать генераторы `[ObservableProperty]`
+и `[RelayCommand]`. Ручная реализация `INotifyPropertyChanged` не требуется.
+
+`MainWindowViewModel` — пустая заготовка для логики главного окна.
+Выбор темы в ней и в главном окне отсутствует; тема применяется через `ThemeService`.

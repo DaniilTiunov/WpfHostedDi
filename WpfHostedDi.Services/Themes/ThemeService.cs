@@ -1,40 +1,29 @@
+using System.Windows;
+
 namespace WpfHostedDi.Services.Themes;
 
-/// <summary>Хранит текущую тему и сообщает об изменениях после применения палитры.</summary>
-public sealed class ThemeService : IThemeService
+/// <summary>Применяет палитру к запущенному WPF-приложению. Вызывается в UI-потоке.</summary>
+public sealed class ThemeService
 {
-    private readonly IThemeApplier _themeApplier;
-    private bool _isApplied;
+    private ResourceDictionary? _themeDictionary;
 
-    /// <summary>Создаёт сервис с реализацией применения ресурсов интерфейса.</summary>
-    public ThemeService(IThemeApplier themeApplier)
-    {
-        ArgumentNullException.ThrowIfNull(themeApplier);
-        _themeApplier = themeApplier;
-    }
+    /// <summary>Текущая тема; при запуске используется тёмная палитра.</summary>
+    public AppTheme CurrentTheme { get; private set; } = AppTheme.Light;
 
-    /// <inheritdoc />
-    public AppTheme CurrentTheme { get; private set; } = AppTheme.Dark;
-
-    /// <inheritdoc />
-    public event EventHandler<ThemeChangedEventArgs>? ThemeChanged;
-
-    /// <inheritdoc />
+    /// <summary>Загружает словарь вида DarkColors.xaml, сохраняя остальные ресурсы.</summary>
     public void ApplyTheme(AppTheme theme)
     {
-        if (!Enum.IsDefined(theme))
-            throw new ArgumentOutOfRangeException(nameof(theme), theme, "Неизвестная тема приложения.");
+        var dictionary = new ResourceDictionary
+        {
+            Source = new Uri($"pack://application:,,,/WpfHostedDi.Services;component/Resources/Themes/{theme}Colors.xaml")
+        };
+        var dictionaries = Application.Current.Resources.MergedDictionaries;
 
-        if (_isApplied && CurrentTheme == theme)
-            return;
+        if (_themeDictionary is not null)
+            dictionaries.Remove(_themeDictionary);
 
-        // Состояние меняется только после успешной загрузки ресурсов.
-        _themeApplier.Apply(theme);
-        var changed = CurrentTheme != theme;
+        dictionaries.Insert(0, dictionary);
+        _themeDictionary = dictionary;
         CurrentTheme = theme;
-        _isApplied = true;
-
-        if (changed)
-            ThemeChanged?.Invoke(this, new ThemeChangedEventArgs(theme));
     }
 }

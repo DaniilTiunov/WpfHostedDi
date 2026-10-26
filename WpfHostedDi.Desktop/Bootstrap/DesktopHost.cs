@@ -1,6 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WpfHostedDi.Desktop.Services;
 using WpfHostedDi.Desktop.ViewModels;
 using WpfHostedDi.Desktop.Views.Windows;
 using WpfHostedDi.Services.Themes;
@@ -31,8 +30,7 @@ public static class DesktopHost
 
     private static void ConfigureServices(IServiceCollection services)
     {
-        services.AddSingleton<IThemeApplier, WpfThemeApplier>();
-        services.AddSingleton<IThemeService, ThemeService>();
+        services.AddSingleton<ThemeService>();
     }
 
     private static void ConfigureViews(IServiceCollection services)
