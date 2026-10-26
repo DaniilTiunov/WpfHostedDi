@@ -20,6 +20,7 @@
       "packagesPath": "C:\\Users\\pr-constr38\\.nuget\\packages\\",
       "outputPath": "C:\\Work\\Prjs\\WpfHostedDi\\WpfHostedDi\\WpfHostedDi.Extensions\\obj\\",
       "projectStyle": "PackageReference",
+      "centralPackageVersionsManagementEnabled": true,
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
@@ -59,6 +60,20 @@
       "net10.0": {
         "framework": "net10.0",
         "targetAlias": "net10.0",
+        "centralPackageVersions": {
+          "CommunityToolkit.Mvvm": "8.4.2",
+          "coverlet.collector": "6.0.4",
+          "Microsoft.Extensions.DependencyInjection": "11.0.0-rc.3.26522.148",
+          "Microsoft.Extensions.Hosting": "11.0.0-rc.3.26522.148",
+          "Microsoft.NET.Test.Sdk": "17.14.1",
+          "Serilog": "4.4.1-dev-02453",
+          "Serilog.Extensions.Hosting": "10.0.0",
+          "Serilog.Extensions.Logging": "10.0.0",
+          "Serilog.Sinks.Console": "6.1.1",
+          "Serilog.Sinks.File": "8.0.0-nblumhardt-02322",
+          "xunit": "2.9.3",
+          "xunit.runner.visualstudio": "3.1.4"
+        },
         "imports": [
           "net461",
           "net462",

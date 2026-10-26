@@ -38,3 +38,24 @@ themeService.ApplyTheme(AppTheme.Light);
 
 `MainWindowViewModel` — пустая заготовка для логики главного окна.
 Выбор темы в ней и в главном окне отсутствует; тема применяется через `ThemeService`.
+
+## NuGet-пакеты
+
+Версии всех NuGet-пакетов задаются в корневом `Directory.Packages.props`.
+В файлах проектов остаются только ссылки `PackageReference` без атрибута `Version`.
+
+Для добавления зависимости укажи её версию один раз в `Directory.Packages.props`:
+
+```xml
+<PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+```
+
+И подключи пакет в нужном `.csproj`:
+
+```xml
+<PackageReference Include="CommunityToolkit.Mvvm" />
+```
+
+Обновляй версию в `Directory.Packages.props` — она применяется ко всем проектам,
+которые ссылаются на этот пакет. Новые проекты внутри репозитория автоматически
+используют эти настройки.

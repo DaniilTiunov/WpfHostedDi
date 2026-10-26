@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WpfHostedDi.Extensions")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1b24458c554fce198390ad70f155fa25b856615c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3c3eca29b5f22030ec480d22a044dfaeb600d921")]
 [assembly: System.Reflection.AssemblyProductAttribute("WpfHostedDi.Extensions")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WpfHostedDi.Extensions")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

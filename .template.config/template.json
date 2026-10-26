@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/template",
-  "author": "Daniil",
-  "identity": "Daniil.WpfHostedDi",
+  "author": "CenitelPhonka",
+  "identity": "CenitelPhonka.WpfHostedDi",
   "name": "WPF with Generic Host and DI",
   "description": "WPF-приложение с Generic Host, DI и управлением темами.",
   "shortName": "wpfhostdi",

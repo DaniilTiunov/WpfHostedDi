@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 using WpfHostedDi.Desktop.ViewModels;
 using WpfHostedDi.Desktop.Views.Windows;
 using WpfHostedDi.Services.Themes;
@@ -13,6 +14,17 @@ public static class DesktopHost
     public static IHost Build(string[]? args = null)
     {
         return Host.CreateDefaultBuilder(args ?? [])
+            .UseSerilog((context, services, config) =>
+            {
+                config.ReadFrom.Configuration(context.Configuration)
+                    .ReadFrom.Services(services)
+                    .Enrich.FromLogContext()
+                    .MinimumLevel.Debug()
+                    .WriteTo.Console()
+                    .WriteTo.File(
+                        path: "log.txt",
+                        rollingInterval: RollingInterval.Day);
+            })
             .ConfigureServices(services =>
             {
                 ConfigureApp(services);
@@ -40,7 +52,6 @@ public static class DesktopHost
 
     private static void ConfigureViewModels(IServiceCollection services)
     {
-        // Главное окно живёт до завершения приложения, поэтому его ViewModel также singleton.
-        services.AddSingleton<MainWindowViewModel>();
+        services.AddScoped<MainWindowViewModel>();
     }
 }
