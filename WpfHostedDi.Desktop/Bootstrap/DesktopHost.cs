@@ -1,18 +1,23 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WpfHostedDi.Desktop.Services;
 using WpfHostedDi.Desktop.ViewModels;
 using WpfHostedDi.Desktop.Views.Windows;
+using WpfHostedDi.Services.Themes;
 
 namespace WpfHostedDi.Desktop.Bootstrap;
 
+/// <summary>Собирает Generic Host и регистрирует зависимости настольного приложения.</summary>
 public static class DesktopHost
 {
-    public static IHost Build()
+    /// <summary>Создаёт хост с конфигурацией, логированием и сервисами приложения.</summary>
+    public static IHost Build(string[]? args = null)
     {
-        return Host.CreateDefaultBuilder()
+        return Host.CreateDefaultBuilder(args ?? [])
             .ConfigureServices(services =>
             {
                 ConfigureApp(services);
+                ConfigureServices(services);
                 ConfigureViews(services);
                 ConfigureViewModels(services);
             })
@@ -24,6 +29,12 @@ public static class DesktopHost
         services.AddSingleton<App>();
     }
 
+    private static void ConfigureServices(IServiceCollection services)
+    {
+        services.AddSingleton<IThemeApplier, WpfThemeApplier>();
+        services.AddSingleton<IThemeService, ThemeService>();
+    }
+
     private static void ConfigureViews(IServiceCollection services)
     {
         services.AddSingleton<MainWindow>();
@@ -31,6 +42,7 @@ public static class DesktopHost
 
     private static void ConfigureViewModels(IServiceCollection services)
     {
-        services.AddScoped<MainWindowViewModel>();
+        // Главное окно живёт до завершения приложения, поэтому его ViewModel также singleton.
+        services.AddSingleton<MainWindowViewModel>();
     }
 }

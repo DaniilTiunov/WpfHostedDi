@@ -1,12 +1,26 @@
-﻿<Window
+<Window
     x:Class="WpfHostedDi.Desktop.Views.Windows.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="MainWindow"
+    Style="{StaticResource {x:Type Window}}"
+    Title="WPF Hosted DI"
     Width="800"
     Height="450"
     mc:Ignorable="d">
-    <Grid />
+    <StackPanel Margin="32">
+        <TextBlock FontSize="26" FontWeight="SemiBold" Text="WPF Hosted DI" />
+        <TextBlock Margin="0,8,0,24" Foreground="{DynamicResource SecondaryTextBrush}"
+                   Text="Шаблон приложения с Generic Host и внедрением зависимостей." TextWrapping="Wrap" />
+        <TextBlock Margin="0,0,0,8" Text="Тема приложения" />
+        <ComboBox Width="200" HorizontalAlignment="Left"
+                  ItemsSource="{Binding AvailableThemes}"
+                  SelectedItem="{Binding SelectedTheme, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <Border Margin="0,24,0,0" Padding="20" Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1" CornerRadius="8">
+            <TextBlock Text="Цвета обновляются через DynamicResource без пересоздания окна."
+                       TextWrapping="Wrap" />
+        </Border>
+    </StackPanel>
 </Window>
