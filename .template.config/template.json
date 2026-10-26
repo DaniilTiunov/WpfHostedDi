@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json.schemastore.org/template",
+  "author": "Daniil",
+  "identity": "Daniil.WpfHostedDi",
+  "name": "WPF with Generic Host and DI",
+  "description": "WPF-приложение с Generic Host, DI и управлением темами.",
+  "shortName": "wpfhostdi",
+  "sourceName": "WpfHostedDi",
+  "preferNameDirectory": true,
+  "classifications": ["WPF", "Desktop", "DI"],
+  "tags": {
+    "language": "C#",
+    "type": "solution"
+  },
+  "sources": [
+    {
+      "modifiers": [
+        {
+          "exclude": [
+            "**/[Bb]in/**",
+            "**/[Oo]bj/**",
+            "**/.git/**",
+            "**/.idea/**",
+            "**/.vs/**",
+            "**/.codex/**",
+            "**/.agents/**",
+            ".template.config/**"
+          ]
+        }
+      ]
+    }
+  ]
+}
