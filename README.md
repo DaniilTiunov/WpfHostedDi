@@ -6,7 +6,7 @@
 
 - `WpfHostedDi.Services` — сервисы и контракты без зависимости от WPF.
 - `WpfHostedDi.Desktop` — точка входа, DI, окна, ViewModel и реализация применения WPF-ресурсов.
-- `WpfHostedDi.Tests` — тесты сервиса тем и запуска приложения в STA-потоке.
+- `WpfHostedDi.Tests` — проект xUnit для интеграционного тестирования
 
 `Program` запускает хост, выполняет WPF message loop и останавливает хост при выходе.
 Регистрации находятся в `Bootstrap/DesktopHost.cs`. Главное окно, его ViewModel
@@ -30,15 +30,3 @@ themeService.ApplyTheme(AppTheme.Light);
 Для окон явно подключай общий стиль: `Style="{StaticResource {x:Type Window}}"`.
 Чтобы добавить тему, расширь `AppTheme`, добавь словарь с теми же ключами в
 `Resources/Themes` и сопоставление файла в `WpfThemeApplier`.
-
-## Запуск и проверка
-
-На Windows с .NET 10 SDK:
-
-```powershell
-dotnet run --project WpfHostedDi.Desktop
-dotnet test WpfHostedDi.slnx
-```
-
-Интеграционный тест кратковременно открывает главное окно, проверяет запуск,
-переключение цветов, сохранность стилей и освобождение подписки ViewModel.
