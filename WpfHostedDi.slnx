@@ -1,6 +1,6 @@
 <Solution>
-    <Project Path="WpfHostedDi.Desktop/WpfHostedDi.Desktop.csproj" />
-    <Project Path="WpfHostedDi.Extensions/WpfHostedDi.Extensions.csproj" />
-    <Project Path="WpfHostedDi.Services/WpfHostedDi.Services.csproj" />
-    <Project Path="WpfHostedDi.Tests/WpfHostedDi.Tests.csproj" />
+    <Project Path="WpfHostedDi.Desktop/WpfHostedDi.Desktop.csproj"/>
+    <Project Path="WpfHostedDi.Extensions/WpfHostedDi.Extensions.csproj"/>
+    <Project Path="WpfHostedDi.Services/WpfHostedDi.Services.csproj"/>
+    <Project Path="WpfHostedDi.Tests/WpfHostedDi.Tests.csproj"/>
 </Solution>

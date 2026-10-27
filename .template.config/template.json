@@ -7,7 +7,11 @@
   "shortName": "wpfhostdi",
   "sourceName": "WpfHostedDi",
   "preferNameDirectory": true,
-  "classifications": ["WPF", "Desktop", "DI"],
+  "classifications": [
+    "WPF",
+    "Desktop",
+    "DI"
+  ],
   "tags": {
     "language": "C#",
     "type": "solution"

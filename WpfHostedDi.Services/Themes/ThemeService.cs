@@ -15,7 +15,8 @@ public sealed class ThemeService
     {
         var dictionary = new ResourceDictionary
         {
-            Source = new Uri($"pack://application:,,,/WpfHostedDi.Services;component/Resources/Themes/{theme}Colors.xaml")
+            Source = new Uri(
+                $"pack://application:,,,/WpfHostedDi.Services;component/Resources/Themes/{theme}Colors.xaml")
         };
         var dictionaries = Application.Current.Resources.MergedDictionaries;
 

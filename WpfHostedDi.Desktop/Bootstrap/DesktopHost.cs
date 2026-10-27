@@ -22,7 +22,7 @@ public static class DesktopHost
                     .MinimumLevel.Debug()
                     .WriteTo.Console()
                     .WriteTo.File(
-                        path: "log.txt",
+                        "log.txt",
                         rollingInterval: RollingInterval.Day);
             })
             .ConfigureServices(services =>
